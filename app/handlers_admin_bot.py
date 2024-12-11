@@ -27,7 +27,7 @@ def check_user(user_id_message: int) -> bool:
     return user_id_message == user_id_owner
 
 
-@router.message(Command(commands=["act_bot"], prefix="."))
+@router.message(Command("act_bot"))
 async def handler(message: Message):
     is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
@@ -37,7 +37,7 @@ async def handler(message: Message):
         await message.reply(text="Бот включен")
 
 
-@router.message(Command(commands=["dis_bot"], prefix="."))
+@router.message(Command("dis_bot"))
 async def handler(message: Message):
     is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
@@ -47,7 +47,7 @@ async def handler(message: Message):
         await message.reply(text="Бот отключен")
 
 
-@router.message(Command(commands=["get_status_bot"], prefix="."))
+@router.message(Command("get_status_bot"))
 async def handler(message: Message):
     is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
@@ -62,7 +62,7 @@ async def handler(message: Message):
             await message.react(reaction=[emoji_got_it])
 
 
-@router.message(Command(commands=["get_config"], prefix="."))
+@router.message(Command("get_config"))
 async def handler(message: Message):
     is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
@@ -77,24 +77,13 @@ async def handler(message: Message):
         await message.reply(text=str_f, parse_mode=ParseMode.HTML)
 
 
-@router.message(Command(commands=["exit"], prefix="~"))
+@router.message(Command("cmd_bot"))
 async def handler(message: Message):
     is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
-        emoji_got_it = ReactionTypeEmoji(emoji='😴')
-        await message.react(reaction=[emoji_got_it])
-        await message.reply(text="Бот завершил работу")
-        sys.exit(__status=1)
-
-
-@router.message(Command(commands=["cmd_bot"], prefix="."))
-async def handler(message: Message):
-    is_owner = check_user(user_id_message=message.from_user.id)
-    if is_owner:
-        str_f_cmd = (f"<u>Список команд для администрирования бота</u>:\n\n"
-                     f"<b>act_bot</b> - активация бота;\n"
-                     f"<b>dis_bot</b> - деактивация бота;\n"
-                     f"<b>get_status_bot</b> - получить текущий статус бота;\n"
-                     f"<b>get_config</b> - получить размер файла базы данных;\n"
-                     f"<b>exit</b> - получить количество записей в базе;")
-        await message.reply(text=str_f_cmd, parse_mode=ParseMode.HTML)
+        str_f_cmd = (f"***Список команд для администрирования бота***:\n\n"
+                     f"/act_bot - активация бота;\n"
+                     f"/dis_bot - деактивация бота;\n"
+                     f"/get_status_bot - получить текущий статус бота;\n"
+                     f"/get_config - получить размер файла базы данных;")
+        await message.reply(text=str_f_cmd, parse_mode=ParseMode.MARKDOWN)
