@@ -1,0 +1,12 @@
+.venv
+.idea
+__pycache__/
+
+config/config.ini
+info_msg.txt
+
+db
+
+message/tmp_messages.yaml
+
+TODO.py
