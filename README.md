@@ -18,6 +18,24 @@
 * /pic - для сохранения авторских прав, выдаст ссылку на аватар бота;
 * /description - отправит более подробное описание бота.
 
+## :computer: Technology Stack
+
+#### Computer language
+
+![Python](https://img.shields.io/badge/-Python-black?style=flat-square&logo=Python)
+
+#### FrameWork
+
+![Aiogram](https://img.shields.io/badge/-Aiogram-black?style=flat-square&logo=Aiogram)
+
+#### Data Bases
+
+![SQLite](https://img.shields.io/badge/-SQLite-black?style=flat-square&logo=sqlite)
+
+#### VCS
+
+![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)
+
 <hr>
 
 <!-- START [S E C T I O N] count visits and date profile update -->
