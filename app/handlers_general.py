@@ -6,6 +6,7 @@ from aiogram.enums.parse_mode import ParseMode
 import configparser
 
 from config.parser_config_admin import get_status_bot, set_active_bot, set_inactive_bot, get_owner_user_id
+from config.parser_config_business import get_bot_version
 
 router = Router()
 
@@ -49,3 +50,11 @@ async def handler(message: Message):
                                  "Чтобы использовать чат-бота, используйте команду /author. Вам ответит чат-бот.")
         emoji_got_it = ReactionTypeEmoji(emoji='👍')
         await message.react(reaction=[emoji_got_it])
+
+
+@router.message(Command("version"))
+async def handler(message: Message):
+    status = get_status_bot()
+    if status == "1":
+        ver = get_bot_version()
+        await message.reply(text=f"**Версия бота**: *{ver}*", parse_mode=ParseMode.MARKDOWN)

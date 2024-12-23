@@ -38,3 +38,7 @@ def set_inactive_business() -> None:
     with open('config/config.ini', 'w') as configfile:
         conf.write(configfile)
     return None
+
+
+def get_bot_version() -> str:
+    return str(conf['VERSION_BOT']['ver'])
