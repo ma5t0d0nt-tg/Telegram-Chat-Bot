@@ -7,7 +7,7 @@ import os
 
 from config.parser_config_business import get_active_business, set_active_business, set_inactive_business
 from config.parser_config_admin import get_owner_user_id
-from db.sqlite import db_start, get_all_record, get_all_chats, delete_message, delete_all_message, db_stop
+from db.sqlite import db_start, get_count_record, get_all_chats, delete_message, delete_all_message, db_stop
 
 router = Router()
 
@@ -75,7 +75,7 @@ async def handler(message: Message):
     is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
         await db_start()
-        count = await get_all_record()
+        count = await get_count_record()
         await db_stop()
         await message.reply(f"Количество записей в базе данных: {count[0][0]}")
         emoji_got_it = ReactionTypeEmoji(emoji='👍')
