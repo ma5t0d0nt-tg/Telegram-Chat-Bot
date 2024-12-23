@@ -24,17 +24,28 @@
 
 ![Python](https://img.shields.io/badge/-Python-black?style=flat-square&logo=Python)
 
+Python для Telegram — это язык программирования, который используется для создания Telegram-ботов.
+Бот, написанный на Python, отличается скоростью, безопасностью и стабильностью.
+
 #### FrameWork
 
 ![Aiogram](https://img.shields.io/badge/-Aiogram-black?style=flat-square&logo=Aiogram)
+
+Aiogram — это асинхронная библиотека для языка программирования Python, основанная на Telegram Bot API.
 
 #### Data Bases
 
 ![SQLite](https://img.shields.io/badge/-SQLite-black?style=flat-square&logo=sqlite)
 
+SQLite — это система управления базами данных, написанная на языке C. Она не имеет сервера и хранит созданные базы 
+данных в пределах одного локального компьютера.
+
 #### VCS
 
 ![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)
+
+GitHub — это веб-сервис для хостинга IT-проектов и их совместной разработки. Также его называют социальной сетью для 
+разработчиков, так как в нём можно не только размещать код, но и общаться, комментировать правки друг друга.
 
 <hr>
 
