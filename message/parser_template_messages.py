@@ -8,22 +8,8 @@ def get_welcome_messages() -> str:
     return str(templates["welcome_messages"])
 
 
-def get_question_1() -> str:
-    return str(templates["question_1"])
-
-
-def get_question_2(*, name: str = "") -> str:
-    if name is None or name == "":
-        return str(templates["question_2_without_name"])
-    else:
-        return str(templates["question_2_with_name"])
-
-
-def get_question_3(*, name: str = None) -> str:
-    if name is None or name == "":
-        return str(templates["question_3_without_name"])
-    else:
-        return str(templates["question_3_with_name"])
+def get_question(index: int) -> str:
+    return str(templates[f"question_{index}"])
 
 
 def get_info_about_new_message():
