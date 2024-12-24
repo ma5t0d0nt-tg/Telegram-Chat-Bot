@@ -1,5 +1,3 @@
-import pprint
-
 from aiogram import F, Router
 from aiogram.types import Message, TelegramObject, ChatFullInfo, BotCommand, ReactionTypeEmoji
 from aiogram.filters import CommandStart, Command
@@ -8,8 +6,6 @@ from aiogram.enums.parse_mode import ParseMode
 import configparser
 
 from typing import Callable
-import sys
-import json
 
 from config.parser_config_admin import (get_status_bot, set_active_bot,
                                         set_inactive_bot, get_owner_user_id)
