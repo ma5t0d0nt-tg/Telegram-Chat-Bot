@@ -1,5 +1,19 @@
+<table>
+<tr>
+    <th><h1 align="center"><a href="https://t.me/as_md_bot">Telegram Chat-Bot</a></h1>
+</th>
+    <th width="15%">
+
+![img.png](qr_code_bot.png)
+
+</th>
+</tr>
+</table>
+
 <h1 align="center">
-    Telegram Chat-Bot
+
+![img_1.png](pic_tg_assistant.png)
+
 </h1>
 
 В функциях **Telegram Premium** появились возможности **Telegram Business**. Одной из таких функций стала возможность добавить 
@@ -128,6 +142,21 @@ _Версия бота будет изменяться_
 > 
 > > Также его называют социальной сетью для 
 разработчиков, так как в нём можно не только размещать код, но и общаться, комментировать правки друг друга.
+
+<hr>
+
+<!-- START [S E C T I O N] Communication with me -->
+
+## :link: Communication with Me
+
+<h1 align="center">
+  <a href="https://t.me/m/QidnFEAvNzBi">
+      <!-- Telegram -->
+      <img src="https://img.icons8.com/?size=100&id=Sz6lu91x9jqC&format=png&color=000000" alt="darkwood"/>
+    </a>
+</h1>
+
+<!-- END [S E C T I O N] Communication with me -->
 
 <hr>
 
