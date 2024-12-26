@@ -13,7 +13,7 @@ from config.parser_config_admin import (get_status_bot, set_active_bot,
 router = Router()
 
 
-def check_user(user_id_message: int) -> bool:
+def __check_user(user_id_message: int) -> bool:
     """
     Функция для проверки доступа к управлению ботом и его настройками
     :param user_id_message: int user_id пользователя, который пишет боту
@@ -25,7 +25,7 @@ def check_user(user_id_message: int) -> bool:
 
 @router.message(Command("act_bot"))
 async def handler(message: Message):
-    is_owner = check_user(user_id_message=message.from_user.id)
+    is_owner = __check_user(user_id_message=message.from_user.id)
     if is_owner:
         set_active_bot()
         await message.reply(text="Бот включен")
@@ -33,7 +33,7 @@ async def handler(message: Message):
 
 @router.message(Command("dis_bot"))
 async def handler(message: Message):
-    is_owner = check_user(user_id_message=message.from_user.id)
+    is_owner = __check_user(user_id_message=message.from_user.id)
     if is_owner:
         set_inactive_bot()
         await message.reply(text="Бот отключен")
@@ -41,7 +41,7 @@ async def handler(message: Message):
 
 @router.message(Command("get_status_bot"))
 async def handler(message: Message):
-    is_owner = check_user(user_id_message=message.from_user.id)
+    is_owner = __check_user(user_id_message=message.from_user.id)
     if is_owner:
         current_status = int(get_status_bot())
         if current_status == 0:
@@ -52,7 +52,7 @@ async def handler(message: Message):
 
 @router.message(Command("get_config"))
 async def handler(message: Message):
-    is_owner = check_user(user_id_message=message.from_user.id)
+    is_owner = __check_user(user_id_message=message.from_user.id)
     if is_owner:
         conf = configparser.ConfigParser()
         conf.read('config/config.ini')
@@ -65,7 +65,7 @@ async def handler(message: Message):
 
 @router.message(Command("cmd_bot"))
 async def handler(message: Message):
-    is_owner = check_user(user_id_message=message.from_user.id)
+    is_owner = __check_user(user_id_message=message.from_user.id)
     if is_owner:
         str_f_cmd = (f"***Список команд для администрирования бота***:\n\n"
                      f"/act_bot - активация бота;\n"

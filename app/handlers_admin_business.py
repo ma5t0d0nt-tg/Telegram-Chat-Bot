@@ -12,7 +12,7 @@ from db.sqlite import db_start, get_count_record, get_all_chats, delete_message,
 router = Router()
 
 
-def check_user(user_id_message: int) -> bool:
+def __check_user(user_id_message: int) -> bool:
     """
     Функция для проверки доступа к управлению ботом и его настройками
     :param user_id_message: int user_id пользователя, который пишет боту
@@ -24,7 +24,7 @@ def check_user(user_id_message: int) -> bool:
 
 @router.message(Command("act_bus"))
 async def handler(message: Message):
-    is_owner = check_user(user_id_message=message.from_user.id)
+    is_owner = __check_user(user_id_message=message.from_user.id)
     if is_owner:
         set_active_business()
         await message.reply(text="Чат-бот включен")
@@ -32,7 +32,7 @@ async def handler(message: Message):
 
 @router.message(Command("dis_bus"))
 async def handler(message: Message):
-    is_owner = check_user(user_id_message=message.from_user.id)
+    is_owner = __check_user(user_id_message=message.from_user.id)
     if is_owner:
         set_inactive_business()
         await message.reply(text="Чат-бот отключен")
@@ -40,7 +40,7 @@ async def handler(message: Message):
 
 @router.message(Command("get_status_bus"))
 async def handler(message: Message):
-    is_owner = check_user(user_id_message=message.from_user.id)
+    is_owner = __check_user(user_id_message=message.from_user.id)
     if is_owner:
         current_status = int(get_active_business())
         if current_status == 0:
@@ -51,7 +51,7 @@ async def handler(message: Message):
 
 @router.message(Command("get_file_db_size"))
 async def handler(message: Message):
-    is_owner = check_user(user_id_message=message.from_user.id)
+    is_owner = __check_user(user_id_message=message.from_user.id)
     if is_owner:
         file_size_byte = os.path.getsize("messages.db")
         file_size_kbyte = file_size_byte / 1024
@@ -60,7 +60,7 @@ async def handler(message: Message):
 
 @router.message(Command("get_count_record"))
 async def handler(message: Message):
-    is_owner = check_user(user_id_message=message.from_user.id)
+    is_owner = __check_user(user_id_message=message.from_user.id)
     if is_owner:
         await db_start()
         count = await get_count_record()
@@ -70,7 +70,7 @@ async def handler(message: Message):
 
 @router.message(Command("get_all_chats"))
 async def handler(message: Message):
-    is_owner = check_user(user_id_message=message.from_user.id)
+    is_owner = __check_user(user_id_message=message.from_user.id)
     if is_owner:
         await db_start()
         chats = await get_all_chats()
@@ -82,7 +82,7 @@ async def handler(message: Message):
 
 @router.message(F.text.startswith("del"))
 async def handler(message: Message):
-    is_owner = check_user(user_id_message=message.from_user.id)
+    is_owner = __check_user(user_id_message=message.from_user.id)
     if is_owner:
         id_msg = message.text.split(" ")[1].strip()
         await db_start()
@@ -93,7 +93,7 @@ async def handler(message: Message):
 
 @router.message(Command("del_all"))
 async def handler(message: Message):
-    is_owner = check_user(user_id_message=message.from_user.id)
+    is_owner = __check_user(user_id_message=message.from_user.id)
     if is_owner:
         await db_start()
         await delete_all_message()
@@ -103,7 +103,7 @@ async def handler(message: Message):
 
 @router.message(Command("cmd_bus"))
 async def handler(message: Message):
-    is_owner = check_user(user_id_message=message.from_user.id)
+    is_owner = __check_user(user_id_message=message.from_user.id)
     if is_owner:
         str_f_cmd = (f"***Список команд для администрирования чат-бота***:\n\n"
                      f"/act_bus - активация чат-бота;\n"
