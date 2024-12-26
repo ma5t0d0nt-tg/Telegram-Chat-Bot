@@ -1,3 +1,7 @@
+"""
+Файл обработчик команд для администрирования чат-бота
+"""
+
 from aiogram import F, Router
 from aiogram.types import Message, ReactionTypeEmoji
 from aiogram.filters import Command

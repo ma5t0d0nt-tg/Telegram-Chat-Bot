@@ -1,3 +1,7 @@
+"""
+Файл обработчик команд пользователей бота
+"""
+
 from aiogram import F, Router
 from aiogram.types import Message, TelegramObject, ChatFullInfo, BotCommand, ReactionTypeEmoji
 from aiogram.filters import Command

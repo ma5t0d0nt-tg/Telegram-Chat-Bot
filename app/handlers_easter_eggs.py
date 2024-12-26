@@ -1,3 +1,7 @@
+"""
+Файл обработчик пасхалок python в боте в двух вариантах
+"""
+
 from aiogram import F, Router
 from aiogram.types import Message, ReactionTypeEmoji
 from aiogram.filters import Command
