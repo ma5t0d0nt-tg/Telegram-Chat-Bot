@@ -65,15 +65,3 @@ async def handler(message: Message):
                  f"[ACTIVE_CHAT_BOT]:\n"
                  f"is_active_business: {conf['ACTIVE_CHAT_BOT']['is_active_business']}")
         await message.reply(text=str_f, parse_mode=ParseMode.HTML)
-
-
-@router.message(Command("cmd_bot"))
-async def handler(message: Message):
-    is_owner = __check_user(user_id_message=message.from_user.id)
-    if is_owner:
-        str_f_cmd = (f"***Список команд для администрирования бота***:\n\n"
-                     f"/act_bot - активация бота;\n"
-                     f"/dis_bot - деактивация бота;\n"
-                     f"/get_status_bot - получить текущий статус бота;\n"
-                     f"/get_config - получить размер файла базы данных;")
-        await message.reply(text=str_f_cmd, parse_mode=ParseMode.MARKDOWN)

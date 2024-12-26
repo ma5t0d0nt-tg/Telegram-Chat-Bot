@@ -92,7 +92,7 @@ async def handler(message: Message):
         await db_start()
         await delete_message(id_message=id_msg)
         await db_stop()
-        await message.reply(f"Сообщение с id = {id_msg} удалено")
+        await message.reply(f"Сообщение с id = {id_msg} удалено из базы данных")
 
 
 @router.message(Command("del_all"))
@@ -103,19 +103,3 @@ async def handler(message: Message):
         await delete_all_message()
         await db_stop()
         await message.reply("Все собщения удалены из базы данных")
-
-
-@router.message(Command("cmd_bus"))
-async def handler(message: Message):
-    is_owner = __check_user(user_id_message=message.from_user.id)
-    if is_owner:
-        str_f_cmd = (f"***Список команд для администрирования чат-бота***:\n\n"
-                     f"/act_bus - активация чат-бота;\n"
-                     f"/dis_bus - деактивация чат-бота;\n"
-                     f"/get_status_bus - получить текущий статус чат-бота;\n"
-                     f"/get_file_db_size - получить размер файла базы данных чат-бота;\n"
-                     f"/get_count_record - получить количество записей в базе от чат-бота;\n"
-                     f"/get_all_chats - получить все чаты от чат-бота;\n"
-                     f"del X - удалить еденичную запись в таблице (X - число);\n"
-                     f"/del_all - удалить все записи в таблице;")
-        await message.reply(text=str_f_cmd, parse_mode=ParseMode.MARKDOWN)
