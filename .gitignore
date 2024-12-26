@@ -6,6 +6,7 @@ config/config.ini
 info_msg.txt
 
 db/
+reports/
 
 message/tmp_messages.yaml
 
