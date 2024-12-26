@@ -28,8 +28,6 @@ async def handler(message: Message):
     is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
         set_active_bot()
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react(reaction=[emoji_got_it])
         await message.reply(text="Бот включен")
 
 
@@ -38,8 +36,6 @@ async def handler(message: Message):
     is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
         set_inactive_bot()
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react(reaction=[emoji_got_it])
         await message.reply(text="Бот отключен")
 
 
@@ -50,12 +46,8 @@ async def handler(message: Message):
         current_status = int(get_status_bot())
         if current_status == 0:
             await message.reply(text="Бот отключен")
-            emoji_got_it = ReactionTypeEmoji(emoji='😴')
-            await message.react(reaction=[emoji_got_it])
         elif current_status == 1:
             await message.reply(text="Бот работает")
-            emoji_got_it = ReactionTypeEmoji(emoji='👨‍💻')
-            await message.react(reaction=[emoji_got_it])
 
 
 @router.message(Command("get_config"))
@@ -68,8 +60,6 @@ async def handler(message: Message):
                  f"is_active_bot: {conf['ACTIVE_BOT']['is_active_bot']}\n\n"
                  f"[ACTIVE_CHAT_BOT]:\n"
                  f"is_active_business: {conf['ACTIVE_CHAT_BOT']['is_active_business']}")
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react(reaction=[emoji_got_it])
         await message.reply(text=str_f, parse_mode=ParseMode.HTML)
 
 

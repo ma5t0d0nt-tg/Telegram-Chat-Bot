@@ -27,8 +27,6 @@ async def handler(message: Message):
     is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
         set_active_business()
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react([emoji_got_it])
         await message.reply(text="Чат-бот включен")
 
 
@@ -37,8 +35,6 @@ async def handler(message: Message):
     is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
         set_inactive_business()
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react([emoji_got_it])
         await message.reply(text="Чат-бот отключен")
 
 
@@ -49,14 +45,8 @@ async def handler(message: Message):
         current_status = int(get_active_business())
         if current_status == 0:
             await message.reply(text="Чат-бот отключен")
-            emoji_got_it = ReactionTypeEmoji(emoji='😴')
-            await message.react([emoji_got_it])
         elif current_status == 1:
             await message.reply(text="Чат-бот работает")
-            emoji_got_it = ReactionTypeEmoji(emoji='👨‍💻')
-            await message.react([emoji_got_it])
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react(reaction=[emoji_got_it])
 
 
 @router.message(Command("get_file_db_size"))
@@ -66,8 +56,6 @@ async def handler(message: Message):
         file_size_byte = os.path.getsize("messages.db")
         file_size_kbyte = file_size_byte / 1024
         await message.reply(f"Размер файла с базой данных: {file_size_kbyte} КБ")
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react(reaction=[emoji_got_it])
 
 
 @router.message(Command("get_count_record"))
@@ -78,8 +66,6 @@ async def handler(message: Message):
         count = await get_count_record()
         await db_stop()
         await message.reply(f"Количество записей в базе данных: {count[0][0]}")
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react(reaction=[emoji_got_it])
 
 
 @router.message(Command("get_all_chats"))
@@ -92,8 +78,6 @@ async def handler(message: Message):
         for chat in chats:
             await message.reply(text=f"id: {chat[0]}\nuser_id: {chat[1]}\n"
                                      f"num_question: {chat[2]}\nanswer: {chat[3]}\n")
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react(reaction=[emoji_got_it])
 
 
 @router.message(F.text.startswith("del"))
@@ -105,8 +89,6 @@ async def handler(message: Message):
         await delete_message(id_message=id_msg)
         await db_stop()
         await message.reply(f"Сообщение с id = {id_msg} удалено")
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react(reaction=[emoji_got_it])
 
 
 @router.message(Command("del_all"))
@@ -117,8 +99,6 @@ async def handler(message: Message):
         await delete_all_message()
         await db_stop()
         await message.reply("Все собщения удалены из базы данных")
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react(reaction=[emoji_got_it])
 
 
 @router.message(Command("cmd_bus"))
@@ -135,5 +115,3 @@ async def handler(message: Message):
                      f"del X - удалить еденичную запись в таблице (X - число);\n"
                      f"/del_all - удалить все записи в таблице;")
         await message.reply(text=str_f_cmd, parse_mode=ParseMode.MARKDOWN)
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react(reaction=[emoji_got_it])

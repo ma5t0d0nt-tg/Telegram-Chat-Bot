@@ -38,8 +38,6 @@ If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!</i></blockquote>
         """
         await message.reply(text=this_text, parse_mode=ParseMode.HTML)
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react(reaction=[emoji_got_it])
 
 
 # пасхалка
@@ -72,5 +70,3 @@ async def handler(message: Message):
         </i></blockquote>
         """
         await message.reply(text=this_text, parse_mode=ParseMode.HTML)
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react(reaction=[emoji_got_it])

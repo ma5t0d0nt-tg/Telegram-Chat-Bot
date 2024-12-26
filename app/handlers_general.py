@@ -17,8 +17,6 @@ async def handler(message: Message):
     if status == "1":
         await message.reply(text=f"Здравствуйте, {message.from_user.first_name}.\n"
                                  f"Я бот, предназаченный для автоматических ответов в личных чатах Telegram Messenger.")
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react(reaction=[emoji_got_it])
 
 
 @router.message(Command("author"))
@@ -26,8 +24,6 @@ async def handler(message: Message):
     status = get_status_bot()
     if status == "1":
         await message.reply(text=f"Ссылка на автора данного бота\nhttps://t.me/m/KPzniy-vOTcy")
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react(reaction=[emoji_got_it])
 
 
 @router.message(Command("pic"))
@@ -38,8 +34,6 @@ async def handler(message: Message):
             text=f"Ссылка на аватар бота: https://yandex.ru/images/search?from=tabbar&img_url=https%3A%2F%2Fi2.wp.com"
                  f"%2Fuangonline.com%2Fwp-content%2Fuploads%2F2018%2F09%2Fbisnis-berbasis-tekno.jpg%3Ffit%3D1200"
                  f"%252C794%26ssl%3D1&lr=11256&pos=0&rpt=simage&text=telegram%20bot%20assistant%20pic")
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react(reaction=[emoji_got_it])
 
 
 @router.message(Command("description"))
@@ -48,8 +42,6 @@ async def handler(message: Message):
     if status == "1":
         await message.reply(text="Этот бот работает как менеджер чатов для личных переписок с его создателем. "
                                  "Чтобы использовать чат-бота, используйте команду /author. Вам ответит чат-бот.")
-        emoji_got_it = ReactionTypeEmoji(emoji='👍')
-        await message.react(reaction=[emoji_got_it])
 
 
 @router.message(Command("version"))
