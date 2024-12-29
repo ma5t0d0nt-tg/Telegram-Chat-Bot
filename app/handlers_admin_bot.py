@@ -9,27 +9,15 @@ from aiogram.enums.parse_mode import ParseMode
 
 import configparser
 
-from typing import Callable
-
-from config.parser_config_admin import (get_status_bot, set_active_bot,
-                                        set_inactive_bot, get_owner_user_id)
+from config.parser_config_admin import get_status_bot, set_active_bot, set_inactive_bot
+from app.check_user import check_user
 
 router = Router()
 
 
-def __check_user(user_id_message: int) -> bool:
-    """
-    Функция для проверки доступа к управлению ботом и его настройками
-    :param user_id_message: int user_id пользователя, который пишет боту
-    :return: true - дается доступ к функциям бота, false - запрет
-    """
-    user_id_owner = get_owner_user_id()
-    return user_id_message == user_id_owner
-
-
 @router.message(Command("act_bot"))
 async def handler(message: Message):
-    is_owner = __check_user(user_id_message=message.from_user.id)
+    is_owner: bool = check_user(user_id_message=message.from_user.id)
     if is_owner:
         set_active_bot()
         await message.reply(text="Бот включен")
@@ -37,7 +25,7 @@ async def handler(message: Message):
 
 @router.message(Command("dis_bot"))
 async def handler(message: Message):
-    is_owner = __check_user(user_id_message=message.from_user.id)
+    is_owner: bool = check_user(user_id_message=message.from_user.id)
     if is_owner:
         set_inactive_bot()
         await message.reply(text="Бот отключен")
@@ -45,7 +33,7 @@ async def handler(message: Message):
 
 @router.message(Command("get_status_bot"))
 async def handler(message: Message):
-    is_owner = __check_user(user_id_message=message.from_user.id)
+    is_owner: bool = check_user(user_id_message=message.from_user.id)
     if is_owner:
         current_status = int(get_status_bot())
         if current_status == 0:
@@ -56,7 +44,7 @@ async def handler(message: Message):
 
 @router.message(Command("get_config"))
 async def handler(message: Message):
-    is_owner = __check_user(user_id_message=message.from_user.id)
+    is_owner: bool = check_user(user_id_message=message.from_user.id)
     if is_owner:
         conf = configparser.ConfigParser()
         conf.read('config/config.ini')

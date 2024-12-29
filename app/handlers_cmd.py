@@ -7,24 +7,18 @@ from aiogram.types import Message, TelegramObject, ChatFullInfo, BotCommand, Rea
 from aiogram.filters import CommandStart, Command
 from aiogram.enums.parse_mode import ParseMode
 
-from config.parser_config_admin import get_owner_user_id
+from message.parser_template_messages import get_cmd
+from app.check_user import check_user
+
+from dotenv import load_dotenv
+import os
 
 router = Router()
 
 
-def __check_user(user_id_message: int) -> bool:
-    """
-    Функция для проверки доступа к управлению ботом и его настройками
-    :param user_id_message: int user_id пользователя, который пишет боту
-    :return: true - дается доступ к функциям бота, false - запрет
-    """
-    user_id_owner = get_owner_user_id()
-    return user_id_message == user_id_owner
-
-
 @router.message(Command("cmd"))
 async def handler(message: Message):
-    is_owner = __check_user(user_id_message=message.from_user.id)
+    is_owner: bool = check_user(user_id_message=message.from_user.id)
     if is_owner:
         str_f_cmd = (f"***Список команд для администрирования бота***:\n"
                      f"*/act_bot* - активация бота;\n"

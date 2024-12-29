@@ -20,19 +20,9 @@ from config.parser_config_admin import get_owner_user_id
 router = Router()
 
 
-def __check_user(user_id_message: int) -> bool:
-    """
-    Функция для проверки доступа к управлению ботом и его настройками
-    :param user_id_message: int user_id пользователя, который пишет боту
-    :return: true - дается доступ к функциям бота, false - запрет
-    """
-    user_id_owner = get_owner_user_id()
-    return user_id_message == user_id_owner
-
-
 @router.message(Command("get_report_pdf"))
 async def handler(message: Message):
-    is_owner = __check_user(user_id_message=message.from_user.id)
+    is_owner: bool = check_user(user_id_message=message.from_user.id)
     if is_owner:
         pdf = fpdf.FPDF()
         pdf.add_page()
@@ -47,7 +37,7 @@ async def handler(message: Message):
 
 @router.message(Command("get_report_xlsx"))
 async def handler(message: Message):
-    is_owner = __check_user(user_id_message=message.from_user.id)
+    is_owner: bool = check_user(user_id_message=message.from_user.id)
     if is_owner:
         df = pd.DataFrame(columns=['Имя', 'Адрес', 'Email', 'Телефон'])
         filepath = os.path.join('reports', 'report_xlsx.xlsx')

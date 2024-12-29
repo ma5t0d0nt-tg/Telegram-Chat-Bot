@@ -12,23 +12,14 @@ import os
 from config.parser_config_business import get_active_business, set_active_business, set_inactive_business
 from config.parser_config_admin import get_owner_user_id
 from db.sqlite import db_start, get_count_record, get_all_chats, delete_message, delete_all_message, db_stop
+from app.check_user import check_user
 
 router = Router()
 
 
-def __check_user(user_id_message: int) -> bool:
-    """
-    Функция для проверки доступа к управлению ботом и его настройками
-    :param user_id_message: int user_id пользователя, который пишет боту
-    :return: true - дается доступ к функциям бота, false - запрет
-    """
-    user_id_owner = get_owner_user_id()
-    return user_id_message == user_id_owner
-
-
 @router.message(Command("act_bus"))
 async def handler(message: Message):
-    is_owner = __check_user(user_id_message=message.from_user.id)
+    is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
         set_active_business()
         await message.reply(text="Чат-бот включен")
@@ -36,7 +27,7 @@ async def handler(message: Message):
 
 @router.message(Command("dis_bus"))
 async def handler(message: Message):
-    is_owner = __check_user(user_id_message=message.from_user.id)
+    is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
         set_inactive_business()
         await message.reply(text="Чат-бот отключен")
@@ -44,7 +35,7 @@ async def handler(message: Message):
 
 @router.message(Command("get_status_bus"))
 async def handler(message: Message):
-    is_owner = __check_user(user_id_message=message.from_user.id)
+    is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
         current_status = int(get_active_business())
         if current_status == 0:
@@ -55,7 +46,7 @@ async def handler(message: Message):
 
 @router.message(Command("get_file_db_size"))
 async def handler(message: Message):
-    is_owner = __check_user(user_id_message=message.from_user.id)
+    is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
         file_size_byte = os.path.getsize("messages.db")
         file_size_kbyte = file_size_byte / 1024
@@ -64,7 +55,7 @@ async def handler(message: Message):
 
 @router.message(Command("get_count_record"))
 async def handler(message: Message):
-    is_owner = __check_user(user_id_message=message.from_user.id)
+    is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
         await db_start()
         count = await get_count_record()
@@ -74,7 +65,7 @@ async def handler(message: Message):
 
 @router.message(Command("get_all_chats"))
 async def handler(message: Message):
-    is_owner = __check_user(user_id_message=message.from_user.id)
+    is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
         await db_start()
         chats = await get_all_chats()
@@ -86,7 +77,7 @@ async def handler(message: Message):
 
 @router.message(F.text.startswith("del"))
 async def handler(message: Message):
-    is_owner = __check_user(user_id_message=message.from_user.id)
+    is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
         id_msg = message.text.split(" ")[1].strip()
         await db_start()
@@ -97,7 +88,7 @@ async def handler(message: Message):
 
 @router.message(Command("del_all"))
 async def handler(message: Message):
-    is_owner = __check_user(user_id_message=message.from_user.id)
+    is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
         await db_start()
         await delete_all_message()
