@@ -4,6 +4,9 @@ from message.parser_template_messages import get_info_about_new_message
 from config.parser_config_admin import get_owner_user_id
 import asyncio
 
+from dotenv import load_dotenv
+import os
+
 
 async def send_information_bot(*, message: Message) -> None:
     """
@@ -22,5 +25,6 @@ async def send_information_bot(*, message: Message) -> None:
         message_date=message.date.date(),
         message_time=message.date.time()
     )
-    await bot.send_message(get_owner_user_id(), info_msg)
+    load_dotenv()
+    await bot.send_message(os.getenv("USER_ID"), info_msg)
     return None

@@ -10,22 +10,6 @@ conf = configparser.ConfigParser()
 conf.read('config/config.ini')
 
 
-def get_token() -> str:
-    """
-    Функция для получения токена из отдельного файла
-    :return: dict токен для подключения к боту
-    """
-    return str(conf['KEY_INFO_BOT']['key'])
-
-
-def get_owner_user_id() -> int:
-    """
-    Функция для получения user_id владельца
-    :return: dict owner_user_id - идентификатор телеграмм аккаунта, прописанный в файле конфигурации
-    """
-    return int(conf['OWNER_TELEGRAM_BOT']['user_id'])
-
-
 def get_status_bot() -> str:
     """
     Функция для получения статуса работы бота
