@@ -36,12 +36,10 @@ async def handler(message: Message):
 async def handler(message: Message):
     is_owner = check_user(user_id_message=message.from_user.id)
     if is_owner:
-        current_status = int(get_active_business())
-        if current_status == 0:
-            await message.reply(text="Чат-бот отключен")
-        elif current_status == 1:
-            await message.reply(text="Чат-бот работает")
+        current_status = get_active_business()
+        if current_status == "0":
             await message.reply(text="_Чат-бот отключен_", parse_mode=ParseMode.MARKDOWN)
+        elif current_status == "1":
             await message.reply(text="_Чат-бот работает_", parse_mode=ParseMode.MARKDOWN)
 
 

@@ -35,12 +35,10 @@ async def handler(message: Message):
 async def handler(message: Message):
     is_owner: bool = check_user(user_id_message=message.from_user.id)
     if is_owner:
-        current_status = int(get_status_bot())
-        if current_status == 0:
-            await message.reply(text="Бот отключен")
-        elif current_status == 1:
-            await message.reply(text="Бот работает")
+        current_status = get_status_bot()
+        if current_status == "0":
             await message.reply(text="_Бот отключен_", parse_mode=ParseMode.MARKDOWN)
+        elif current_status == "1":
             await message.reply(text="_Бот работает_", parse_mode=ParseMode.MARKDOWN)
 
 
