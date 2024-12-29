@@ -11,7 +11,7 @@ from aiogram.enums.parse_mode import ParseMode
 from db.sqlite import db_start, check_answer_on_question, add_message, db_stop
 
 # my import
-from message.parser_template_messages import *
+from message.parser_template_messages import get_welcome_messages, get_question, all_answers_get
 from config.parser_config_business import get_active_business
 
 router = Router()
