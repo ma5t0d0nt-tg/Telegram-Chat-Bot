@@ -3,18 +3,15 @@
 """
 
 # aiogram
-import pprint
-
 from aiogram import Router
 from aiogram.types import Message
 
 # sqlite
-from db.sqlite import db_start, check_answer_on_question, add_message, get_question_for_chats, db_stop
+from db.sqlite import db_start, check_answer_on_question, add_message, db_stop
 
 # my import
 from message.parser_template_messages import *
 from config.parser_config_business import get_active_business
-from config.parser_config_admin import get_owner_user_id
 
 router = Router()
 

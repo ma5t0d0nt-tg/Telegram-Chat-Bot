@@ -3,7 +3,7 @@
 """
 
 from aiogram import F, Router
-from aiogram.types import Message, TelegramObject, ChatFullInfo, BotCommand, ReactionTypeEmoji, InputFile, FSInputFile
+from aiogram.types import Message, FSInputFile
 from aiogram.filters import Command
 from aiogram.enums.parse_mode import ParseMode
 

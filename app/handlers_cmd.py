@@ -3,8 +3,8 @@
 """
 
 from aiogram import F, Router
-from aiogram.types import Message, TelegramObject, ChatFullInfo, BotCommand, ReactionTypeEmoji
-from aiogram.filters import CommandStart, Command
+from aiogram.types import Message
+from aiogram.filters import Command
 from aiogram.enums.parse_mode import ParseMode
 
 from message.parser_template_messages import get_cmd

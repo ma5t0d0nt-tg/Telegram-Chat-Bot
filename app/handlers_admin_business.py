@@ -3,14 +3,13 @@
 """
 
 from aiogram import F, Router
-from aiogram.types import Message, ReactionTypeEmoji
+from aiogram.types import Message
 from aiogram.filters import Command
 from aiogram.enums.parse_mode import ParseMode
 
 import os
 
 from config.parser_config_business import get_active_business, set_active_business, set_inactive_business
-from config.parser_config_admin import get_owner_user_id
 from db.sqlite import db_start, get_count_record, get_all_chats, delete_message, delete_all_message, db_stop
 from app.check_user import check_user
 
