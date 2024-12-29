@@ -15,7 +15,7 @@ import fpdf
 # for xlsx
 import pandas as pd
 
-from config.parser_config_admin import get_owner_user_id
+from app.check_user import check_user
 
 router = Router()
 
