@@ -18,3 +18,8 @@ def get_info_about_new_message():
 
 def all_answers_get():
     return str(templates['all_answers_get'])
+
+
+def get_cmd():
+    return str(templates['cmd'])
+
