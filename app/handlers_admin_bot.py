@@ -20,7 +20,7 @@ async def handler(message: Message):
     is_owner: bool = check_user(user_id_message=message.from_user.id)
     if is_owner:
         set_active_bot()
-        await message.reply(text="Бот включен")
+        await message.reply(text="_Бот включен_", parse_mode=ParseMode.MARKDOWN)
 
 
 @router.message(Command("dis_bot"))
@@ -28,7 +28,7 @@ async def handler(message: Message):
     is_owner: bool = check_user(user_id_message=message.from_user.id)
     if is_owner:
         set_inactive_bot()
-        await message.reply(text="Бот отключен")
+        await message.reply(text="_Бот отключен_", parse_mode=ParseMode.MARKDOWN)
 
 
 @router.message(Command("get_status_bot"))
@@ -40,6 +40,8 @@ async def handler(message: Message):
             await message.reply(text="Бот отключен")
         elif current_status == 1:
             await message.reply(text="Бот работает")
+            await message.reply(text="_Бот отключен_", parse_mode=ParseMode.MARKDOWN)
+            await message.reply(text="_Бот работает_", parse_mode=ParseMode.MARKDOWN)
 
 
 @router.message(Command("get_config"))
@@ -48,8 +50,8 @@ async def handler(message: Message):
     if is_owner:
         conf = configparser.ConfigParser()
         conf.read('config/config.ini')
-        str_f = (f"[ACTIVE_BOT]:\n"
+        str_f = (f"*[ACTIVE_BOT]*:\n"
                  f"is_active_bot: {conf['ACTIVE_BOT']['is_active_bot']}\n\n"
-                 f"[ACTIVE_CHAT_BOT]:\n"
+                 f"*[ACTIVE_CHAT_BOT]*:\n"
                  f"is_active_business: {conf['ACTIVE_CHAT_BOT']['is_active_business']}")
-        await message.reply(text=str_f, parse_mode=ParseMode.HTML)
+        await message.reply(text=str_f, parse_mode=ParseMode.MARKDOWN)

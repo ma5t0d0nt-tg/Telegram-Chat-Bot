@@ -5,6 +5,7 @@
 # aiogram
 from aiogram import Router
 from aiogram.types import Message
+from aiogram.enums.parse_mode import ParseMode
 
 # sqlite
 from db.sqlite import db_start, check_answer_on_question, add_message, db_stop
@@ -35,12 +36,12 @@ async def handler(message: Message):
                 if not answer:
                     await add_message(user_id=message.from_user.id, num_question=index, answer=message.text)
                     if index == 0:
-                        await message.answer(text=get_welcome_messages())
-                        await message.answer(text=get_question(index + 1))
+                        await message.answer(text=get_welcome_messages(), parse_mode=ParseMode.MARKDOWN)
+                        await message.answer(text=get_question(index + 1), parse_mode=ParseMode.MARKDOWN)
                     elif index == len(list_check_answer) - 1:
-                        await message.answer(text=all_answers_get())
+                        await message.answer(text=all_answers_get(), parse_mode=ParseMode.MARKDOWN)
                     else:
-                        await message.answer(text=get_question(index + 1))
+                        await message.answer(text=get_question(index + 1), parse_mode=ParseMode.MARKDOWN)
                     break
 
         await db_stop()

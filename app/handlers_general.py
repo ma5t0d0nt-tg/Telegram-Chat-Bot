@@ -17,15 +17,18 @@ router = Router()
 async def handler(message: Message):
     status = get_status_bot()
     if status == "1":
-        await message.reply(text=f"Здравствуйте, {message.from_user.first_name}.\n"
-                                 f"Я бот, предназаченный для автоматических ответов в личных чатах Telegram Messenger.")
+        await message.reply(text=f"_Здравствуйте, {message.from_user.first_name}.\n"
+                                 f"Я бот, предназаченный для автоматических ответов "
+                                 f"в личных чатах Telegram Messenger_.",
+                            parse_mode=ParseMode.MARKDOWN)
 
 
 @router.message(Command("author"))
 async def handler(message: Message):
     status = get_status_bot()
     if status == "1":
-        await message.reply(text=f"Ссылка на автора данного бота\nhttps://t.me/m/KPzniy-vOTcy")
+        await message.reply(text=f"_Ссылка на автора бота_\nhttps://t.me/m/KPzniy-vOTcy",
+                            parse_mode=ParseMode.MARKDOWN)
 
 
 @router.message(Command("pic"))
@@ -33,17 +36,18 @@ async def handler(message: Message):
     status = get_status_bot()
     if status == "1":
         await message.reply(
-            text=f"Ссылка на аватар бота: https://yandex.ru/images/search?from=tabbar&img_url=https%3A%2F%2Fi2.wp.com"
+            text=f"_Ссылка на аватар бота_: https://yandex.ru/images/search?from=tabbar&img_url=https%3A%2F%2Fi2.wp.com"
                  f"%2Fuangonline.com%2Fwp-content%2Fuploads%2F2018%2F09%2Fbisnis-berbasis-tekno.jpg%3Ffit%3D1200"
-                 f"%252C794%26ssl%3D1&lr=11256&pos=0&rpt=simage&text=telegram%20bot%20assistant%20pic")
+                 f"%252C794%26ssl%3D1&lr=11256&pos=0&rpt=simage&text=telegram%20bot%20assistant%20pic",
+            parse_mode=ParseMode.MARKDOWN)
 
 
 @router.message(Command("description"))
 async def handler(message: Message):
     status = get_status_bot()
     if status == "1":
-        await message.reply(text="Этот бот работает как менеджер чатов для личных переписок с его создателем. "
-                                 "Чтобы использовать чат-бота, используйте команду /author. Вам ответит чат-бот.")
+        await message.reply(text="_Бот работает как менеджер чатов в личных переписках создателя_. ",
+                            parse_mode=ParseMode.MARKDOWN)
 
 
 @router.message(Command("version"))
