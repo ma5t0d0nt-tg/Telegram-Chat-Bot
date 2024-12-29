@@ -20,7 +20,6 @@ async def handler(message: Message):
         this_text = """
         ORIGIN
         <blockquote><i>The Zen of Python, by Tim Peters
-
 Beautiful is better than ugly.
 Explicit is better than implicit.
 Simple is better than complex.
@@ -52,7 +51,6 @@ async def handler(message: Message):
         this_text = """
         TRANSLATE
         <blockquote><i>Красивое лучше, чем уродливое.
-
 Явное лучше, чем неявное.
 Простое лучше, чем сложное.
 Сложное лучше, чем запутанное.
