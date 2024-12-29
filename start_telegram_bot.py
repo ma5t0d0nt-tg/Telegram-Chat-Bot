@@ -1,7 +1,8 @@
 import asyncio
 import logging
 from aiogram import Bot, Dispatcher
-from app import handlers_business, handlers_admin_bot, handlers_admin_business, handlers_general, handlers_report, handlers_cmd
+from app import (handlers_business, handlers_admin_bot, handlers_admin_business, handlers_general, handlers_report,
+                 handlers_cmd, handlers_easter_eggs)
 
 from config.parser_config_admin import get_token
 
@@ -16,7 +17,8 @@ async def main():
                        handlers_admin_business.router,
                        handlers_general.router,
                        handlers_report.router,
-                       handlers_cmd.router)
+                       handlers_cmd.router,
+                       handlers_easter_eggs.router)
     await dp.start_polling(bot)
 
 
