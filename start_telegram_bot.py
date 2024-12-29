@@ -1,5 +1,4 @@
 import asyncio
-import logging
 from aiogram import Bot, Dispatcher
 from app import (handlers_business, handlers_admin_bot, handlers_admin_business, handlers_general, handlers_report,
                  handlers_cmd, handlers_easter_eggs)
