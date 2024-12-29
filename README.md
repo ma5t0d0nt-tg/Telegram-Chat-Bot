@@ -2,7 +2,7 @@
 <tr>
     <th><h1 align="center"><a href="https://t.me/as_md_bot">Telegram Chat-Bot</a></h1>
 </th>
-    <th width="15%">
+<th width="15%">
 
 ![img.png](qr_code_bot.png)
 
@@ -50,6 +50,8 @@
 
 > **Aiogram** — это асинхронная библиотека для языка программирования Python, основанная на Telegram Bot API.
 
+
+
 #### Libs/Module
 
 **configparser**
@@ -69,22 +71,10 @@ is_active_bot = 0
 [ACTIVE_CHAT_BOT]
 is_active_business = 0
 
-; tg_id владельца бота
-[OWNER_TELEGRAM_BOT]
-user_id = 1
-
-; токен для подключения к боту
-[KEY_INFO_BOT]
-key = TELEGRAM BOT FATHER
-
 ; версия бота
 [VERSION_BOT]
 ver = x.x
 ```
-
-_Версия бота будет изменяться_
-
-**_! ! ! Представлена только структура файла, данные изменены ! ! !_**
 
 **sys**
 
